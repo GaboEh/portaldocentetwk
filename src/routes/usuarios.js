@@ -1,6 +1,6 @@
 const express = require ("express");
 const userSchema = require ("../models/usuarios");
-
+const userController = require("../controllers/userController");
 const router = express.Router();
 
 //Crear usuarios
@@ -14,11 +14,24 @@ router.post("/usuarios", (req, res) => {
 
 //Obtener usuarios
 router.get("/usuarios", (req, res) => {
+
     userSchema
-        .find()
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
+            .find()
+            .then((data) => {res.json(data);})
+            .catch((error) => error);
 });
+
+//Obtener usuarios
+router.get("/users", (req, res) => {
+    userController.getUsers(req, res);
+});
+
+//Obtener usuario por rut
+router.get("/user/", (req, res) => {
+    userController.getUserByRut(req, res);
+});
+
+
 
 //Obtener usuarios por id
 router.get("/usuarios/:id", (req, res) => {
@@ -36,7 +49,7 @@ router.put("/usuarios/:id", (req, res) => {
     userSchema
         .updateOne({ _id: id },{ $set: { rut, password } })
         .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
+        .catch((error) => res.json({ message: error }));        
 });
 
 //eliminar usuarios

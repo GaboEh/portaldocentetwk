@@ -4,6 +4,7 @@ require("dotenv").config();
 const userRoutes = require("./routes/usuarios");
 const jorneyRoutes = require("./routes/jornadas");
 const subjectRoutes = require("./routes/ramos");
+const authRoutes = require("./routes/authRoutes");
 const cors = require('cors');
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use('/api', userRoutes);
 app.use('/api', jorneyRoutes);
 app.use('/api', subjectRoutes);
+app.use('/api', authRoutes);
 
 //rutas
 app.get("/", (req, res) => {
