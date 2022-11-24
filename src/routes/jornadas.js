@@ -31,7 +31,7 @@ router.put("/jornadas/:id", (req, res) => {
 });
 
 //eliminar usuarios
-router.delete("/usuarios/:id", (req, res) => {
+router.delete("/jornadas/:id", (req, res) => {
     const { id } = req.params;
     journyesSchema
         .remove({ _id: id })
