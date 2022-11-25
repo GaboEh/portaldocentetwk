@@ -5,6 +5,7 @@ const userRoutes = require("./routes/usuarios");
 const jorneyRoutes = require("./routes/jornadas");
 const subjectRoutes = require("./routes/ramos");
 const authRoutes = require("./routes/authRoutes");
+const asignaturaRoutes = require("./routes/asignaturas");
 const cors = require('cors');
 
 const app = express();
@@ -23,6 +24,7 @@ app.use('/api', userRoutes);
 app.use('/api', jorneyRoutes);
 app.use('/api', subjectRoutes);
 app.use('/api', authRoutes);
+app.use('/api', asignaturaRoutes);
 
 //rutas
 app.get("/", (req, res) => {
