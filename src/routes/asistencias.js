@@ -1,39 +1,41 @@
 const express = require ("express");
-const asignaturaSchema = require  ("../models/asignaturas");
+const asistenciaSchema = require  ("../models/asistencia");
 
 const router = express.Router();
 
-//Crear asignatura
-router.post("/asignaturas", (req, res) =>{
-    const asignatura = asignaturaSchema(req.body);
-    asignatura
+//Crear asistencia
+router.post("/asistencias", (req, res) =>{
+    const asistencia = asistenciaSchema(req.body);
+    asistencia
         .save()
         .then((data) => res.json(data))
         .catch((error) => res.json({}));
 });
 
-//obtener asignatura
-router.get("/asignaturas", (req, res) => {
-    asignaturaSchema
+//obtener asistencia
+router.get("/asistencias", (req, res) => {
+    asistenciaSchema
         .find()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 
-//editar asignatura
-router.put("/asignaturas/:id", (req, res) => {
+
+
+//editar asistencia
+router.put("/asistencias/:id", (req, res) => {
     const { id } = req.params;
-    const { nombre } = req.body;
-    asignaturaSchema
-        .updateOne({ _id: id },{ $set: { nombre } })
+    const { asistencia } = req.body;
+    asistenciaSchema
+        .updateOne({ _id: id },{ $set: { asistencia } })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 
-//eliminar usuarios
-router.delete("/asignaturas/:id", (req, res) => {
+//eliminar asistencia
+router.delete("/asistencias/:id", (req, res) => {
     const { id } = req.params;
-    asignaturaSchema
+    asistenciaSchema
         .remove({ _id: id })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));

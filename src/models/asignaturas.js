@@ -6,6 +6,21 @@ const asignaturaSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    notas:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'notas',
+            autopopulate: true,
+        },
+    ],
+    asistencia:[
+        {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'asistencia',
+        autopopulate: true,
+        }
+]
 });
 
-module.exports = mongoose.model('asignatura', asignaturaSchema);
+asignaturaSchema.plugin(require('mongoose-autopopulate'));
+module.exports = mongoose.model('asignaturas', asignaturaSchema);

@@ -1,31 +1,31 @@
 const express = require ("express");
-const alumnosSchema = require  ("../models/alumnos");
+const alumnosSchema = require ("../models/alumnos");
+const studentController = require("../controllers/studentController");
 
 const router = express.Router();
 
 //Crear alumno
 router.post("/alumnos", (req, res) =>{
-    const asignatura = alumnosSchema(req.body);
-    asignatura
+    const alumno = alumnosSchema(req.body);
+    alumno
         .save()
         .then((data) => res.json(data))
-        .catch((error) => res.json({}));
+        .catch((error) => res.json({ message: error }));
 });
 
 //obtener alumno
-router.get("/alumnos", (req, res) => {
-    alumnosSchema
-        .find()
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
+router.get("/students", (req, res) => {
+    studentController.getStudents(req, res);
 });
 
 //editar alumno
 router.put("/alumnos/:id", (req, res) => {
     const { id } = req.params;
-    const { nombre } = req.body;
+    const { asignaturas } = req.body;
+
+
     alumnosSchema
-        .updateOne({ _id: id },{ $set: { nombre } })
+        .updateOne({ _id: id },{ $set: { asignaturas } })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
@@ -39,5 +39,13 @@ router.delete("/alumnos/:id", (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 
+//ver alumnos por id
+router.get('/alumnos/:id', (req, res) => {
+    const { id } = req.params;
+    alumnosSchema
+        .findById(id)
+        .then((dato) => res.json(dato))
+        .catch((error) => res.json({ message: error }));
+});
 
 module.exports = router;

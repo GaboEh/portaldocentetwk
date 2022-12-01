@@ -1,39 +1,39 @@
 const express = require ("express");
-const asignaturaSchema = require  ("../models/asignaturas");
+const notaSchema = require  ("../models/notas");
 
 const router = express.Router();
 
-//Crear asignatura
-router.post("/asignaturas", (req, res) =>{
-    const asignatura = asignaturaSchema(req.body);
-    asignatura
+//Crear nota
+router.post("/notas", (req, res) =>{
+    const nota = notaSchema(req.body);
+    nota
         .save()
         .then((data) => res.json(data))
         .catch((error) => res.json({}));
 });
 
-//obtener asignatura
-router.get("/asignaturas", (req, res) => {
-    asignaturaSchema
+//obtener nota
+router.get("/notas", (req, res) => {
+    notaSchema
         .find()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 
-//editar asignatura
-router.put("/asignaturas/:id", (req, res) => {
+//editar nota
+router.put("/notas/:id", (req, res) => {
     const { id } = req.params;
-    const { nombre } = req.body;
-    asignaturaSchema
-        .updateOne({ _id: id },{ $set: { nombre } })
+    const { nota } = req.body;
+    notaSchema
+        .updateOne({ _id: id },{ $set: { nota } })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 
-//eliminar usuarios
-router.delete("/asignaturas/:id", (req, res) => {
+//eliminar nota
+router.delete("/notas/:id", (req, res) => {
     const { id } = req.params;
-    asignaturaSchema
+    notaSchema
         .remove({ _id: id })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));

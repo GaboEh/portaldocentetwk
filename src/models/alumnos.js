@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const alumnosSchema = mongoose.Schema({
     nombre: {
         type: String,
@@ -7,10 +8,21 @@ const alumnosSchema = mongoose.Schema({
         unique: true
     },
     nlista: {
-        type: String,
+        type:String,
         required: true,
         unique: true
-    }
+    },
+    asignaturas:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'asignaturas',
+            autopopulate: true,
+        },
+    ]
 });
 
-module.exports = mongoose.model('alumnos', alumnosSchema);
+alumnosSchema.plugin(require('mongoose-autopopulate'));
+
+module.exports = mongoose.model('Alumno', alumnosSchema);
+
+  

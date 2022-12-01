@@ -7,6 +7,8 @@ const subjectRoutes = require("./routes/ramos");
 const authRoutes = require("./routes/authRoutes");
 const asignaturaRoutes = require("./routes/asignaturas");
 const alumnosRoutes = require("./routes/alumnos");
+const notaRoutes = require("./routes/notas");
+const asistenciaRoutes = require("./routes/asistencias");
 const cors = require('cors');
 
 const app = express();
@@ -16,7 +18,7 @@ app.use(cors());
 //mongobd
 mongoose
 mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log("Conected"))
+    .then(() => console.log("Connected"))
     .catch((error) => console.error(error));
 
 //middleware
@@ -27,6 +29,8 @@ app.use('/api', subjectRoutes);
 app.use('/api', authRoutes);
 app.use('/api', asignaturaRoutes);
 app.use('/api', alumnosRoutes);
+app.use('/api', notaRoutes);
+app.use('/api', asistenciaRoutes);
 
 //rutas
 app.get("/", (req, res) => {
