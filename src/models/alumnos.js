@@ -10,7 +10,6 @@ const alumnosSchema = mongoose.Schema({
     nlista: {
         type:String,
         required: true,
-        unique: true
     },
     asignaturas:[
         {

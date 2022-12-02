@@ -23,14 +23,14 @@ router.get("/asignaturas", (req, res) => {
 //editar asignatura
 router.put("/asignaturas/:id", (req, res) => {
     const { id } = req.params;
-    const { nombre } = req.body;
+    const { nombre,notas,asistencia } = req.body;
     asignaturaSchema
-        .updateOne({ _id: id },{ $set: { nombre } })
+        .updateOne({ _id: id },{ $set: { nombre,notas,asistencia } })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 
-//eliminar usuarios
+//eliminar asignaturas
 router.delete("/asignaturas/:id", (req, res) => {
     const { id } = req.params;
     asignaturaSchema

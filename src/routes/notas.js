@@ -9,7 +9,7 @@ router.post("/notas", (req, res) =>{
     nota
         .save()
         .then((data) => res.json(data))
-        .catch((error) => res.json({}));
+        .catch((error) => res.json({message: error}));
 });
 
 //obtener nota
