@@ -5,6 +5,14 @@ const journyesSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    asignaturas:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'asignaturas',
+            autopopulate: true,
+        },
+    ]
 });
+
 
 module.exports = mongoose.model ('journey', journyesSchema);

@@ -30,7 +30,7 @@ router.put("/jornadas/:id", (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 
-//eliminar usuarios
+//eliminar jornada
 router.delete("/jornadas/:id", (req, res) => {
     const { id } = req.params;
     journyesSchema

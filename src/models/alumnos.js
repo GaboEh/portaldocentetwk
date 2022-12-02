@@ -20,8 +20,8 @@ const alumnosSchema = mongoose.Schema({
     ]
 });
 
-alumnosSchema.plugin(require('mongoose-autopopulate'));
+
 
 module.exports = mongoose.model('Alumno', alumnosSchema);
 
-  
+
