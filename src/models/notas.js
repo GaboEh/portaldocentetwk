@@ -4,7 +4,6 @@ const notaSchema = mongoose.Schema({
     nota: {
         type: String,
         required: true,
-        unique: true
     },
 });
 
